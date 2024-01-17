@@ -1,0 +1,67 @@
+﻿<Page x:Class="Frontend.SavePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Frontend"
+      xmlns:controls="clr-namespace:Frontend.View.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Save">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Width" Value="140" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnSave" 
+                         Content="Save" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                         Click="btnSave_Click"/>
+        <Button x:Name="btnLoad"
+         Content="Load" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnLoad_Click"/>
+        <Button x:Name="btnDelete"
+         Content="Delete" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnDelete_Click" />
+        <Button x:Name="btnBack_Navigation"
+        Content="To Games" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                         ButtonBase.Click="btnBack_Navigation_Click" />
+
+
+        <TextBlock Name="txtb_response" 
+         HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2" TextAlignment="Center" TextWrapping="Wrap" Text="HTTP Response log" VerticalAlignment="Center"
+                   Width="250" Height="40"/>
+
+        <ListView x:Name="saveListView" Grid.ColumnSpan="2"  SelectionChanged="saveListView_SelectionChanged"
+               ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.RowSpan="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Save Name" DisplayMemberBinding="{Binding SaveName}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+
+    </Grid>
+</Page>
