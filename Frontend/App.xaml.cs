@@ -8,7 +8,7 @@ namespace Frontend
         public static HttpClient client { get; } = new HttpClient();
         public static Guid GameUid { get; set; } = Guid.Empty;
         public App() {
-            client.BaseAddress = new Uri("https://localhost:7091/api/");
+            client.BaseAddress = new Uri("http://localhost:5194/api/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")

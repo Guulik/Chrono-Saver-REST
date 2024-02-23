@@ -3,6 +3,7 @@ using Backend.Configuration;
 using DatabaseAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,16 @@ builder.Services.AddTransient<UserService>();
 builder.Services.AddTransient<GameService>();
 builder.Services.AddTransient<SaveService>();
 
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole(); 
+});
+
+
 var app = builder.Build();
+
+var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("Application");
+logger.LogInformation("ready");
 
 if (app.Environment.IsDevelopment())
 {
@@ -28,10 +38,13 @@ if (app.Environment.IsDevelopment())
     
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+logger.LogInformation("shaas vse budet");
 
-app.Run();
+app.Run("http://localhost:5194");
+
+logger.LogInformation("exited");
